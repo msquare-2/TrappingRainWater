@@ -9,12 +9,9 @@
 <body>
     <H1>Water Traping Problem</H1>
     <form>
-        <textarea name="number-building" id="number-building" cols="1" rows="1"></textarea>
-        <button id="submit-number">Submit</button>
-        <br/>
-        <br/>
-        <textarea name="" id="heights" cols="10" rows="1"></textarea>
-        <button id="submit-heights">Submit</button>
+        <label for="heights">Building Heights Comma separated ",":</label><br>
+        <input type="text" id="heights" name="BuildingHeights">
+        <input type="submit" value="Submit" onclick="fillWater();">
     </form>
     <div id="graph">
 
