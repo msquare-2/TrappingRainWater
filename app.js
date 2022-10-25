@@ -1,11 +1,29 @@
 function getBuildingHeights() {
-  var heights = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
-  return heights;
+  var heights = document.getElementById("heights").value;
+  let ans = [];
+  console.log(heights);
+  for (const it of heights) {
+    if (!isNaN(it)) {
+        ans.push(parseInt(it));
+    }
+  }
+  return ans;
 }
 
-function getWaterHeights() {
-  var heights = [0, 0, 1, 0, 1, 2, 1, 0, 0, 1, 0, 0];
-  return heights;
+function getWaterHeights(buildingHeights) {
+    var ans = [];
+  for (let i = 0; i < buildingHeights.length; i++) {
+    let leftmax = 0;
+    let rightmax = 0;
+    for (let l = i; l >= 0; l--) {
+        leftmax = Math.max(leftmax,buildingHeights[l]);
+    }
+    for (let r = i; r < array.length; r++) {
+        rightmax = Math.max(rightmax, buildingHeights[r]);
+    }
+    ans.push(Math.min(leftmax, rightmax) - buildingHeights[i]);
+  }
+  return ans;
 }
 
 function getMaxBuildingHeight(buildingHeights) {
@@ -19,9 +37,9 @@ function getMaxBuildingHeight(buildingHeights) {
 function fillWater() {
   // var heights = document.getElementById("heights")[0].value;
   var buildingHeights = getBuildingHeights();
-  var waterHeights = getWaterHeights();
-  var maxBuildingHeight = getMaxBuildingHeight(buildingHeights);
-  tableCreate(buildingHeights, maxBuildingHeight);
+  var waterHeights = getWaterHeights(buildingHeights);
+  var maxHeight = getMaxBuildingHeight(buildingHeights);
+  tableCreate(buildingHeights, maxHeight, waterHeights);
 }
 
 function tableCreate(buildingHeights, maxHeight, waterHeights) {
